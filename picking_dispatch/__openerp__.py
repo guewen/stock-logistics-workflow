@@ -38,6 +38,7 @@
                 'wizard/create_dispatch_view.xml',
                 'wizard/check_assign_all_view.xml',
                 'report.xml',
+                'cron_data.xml',
                 'security/ir.model.access.csv',
                 # 'picking_dispatch_workflow.xml',
                 ],
