@@ -41,7 +41,7 @@ class picking_dispatch_start(orm.TransientModel):
         domain = [('state', '=', 'assigned'),
                   ('id', 'in', dispatch_ids)]
         check_ids = dispatch_obj.search(cr, uid, domain, context=context)
-        if dispatch_ids != dispatch_ids:
+        if dispatch_ids != check_ids:
             raise orm.except_orm(
                 _('Error'),
                 _('All the picking dispatchs must be assigned to '
