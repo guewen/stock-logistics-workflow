@@ -385,3 +385,16 @@ msgstr ""
 #: help:stock.move,dispatch_id:0
 msgid "who this move is dispatched to"
 msgstr ""
+
+#. module: picking_dispatch
+#: code:_description:0
+#: model:ir.model,name:picking_dispatch.model_picking_dispatch_start
+#, python-format
+msgid "Picking Dispatch Start"
+msgstr ""
+
+#. module: picking_dispatch
+#: model:ir.actions.act_window,name:picking_dispatch.action_picking_dispatch_start
+#: view:picking.dispatch.start:0
+msgid "Start Dispatchs"
+msgstr ""
