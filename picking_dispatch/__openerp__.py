@@ -37,6 +37,7 @@
                 'picking_dispatch_sequence.xml',
                 'wizard/create_dispatch_view.xml',
                 'wizard/check_assign_all_view.xml',
+                'wizard/dispatch_assign_picker_view.xml',
                 'report.xml',
                 'cron_data.xml',
                 'security/ir.model.access.csv',
