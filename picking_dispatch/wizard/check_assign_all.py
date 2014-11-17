@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Leonardo Pistone
+#    Author: Guewen Baconnier
 #    Copyright 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,27 +20,23 @@
 ##############################################################################
 
 from openerp.osv import orm
+from openerp.tools.translate import _
 
 
-class ComputeAllDeliveryDatesWizard(orm.TransientModel):
+class check_assign_all(orm.TransientModel):
+    _name = 'picking.dispatch.check.assign.all'
+    _description = 'Picking Dispatch Check Availability'
 
-    _name = 'compute.all.delivery.dates.wizard'
-
-    def do_compute(self, cr, uid, ids, context=None):
-        """Delegate the picking to compute delivery dates for all products.
-
-        If use_new_cursor is in the context, pass it as a parameter.
-
-        """
+    def check(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        pick_obj = self.pool['stock.picking.out']
 
-        if 'use_new_cursor' in context:
-            pick_obj.compute_all_delivery_dates(
-                cr, uid, use_new_cursor=context['use_new_cursor'],
-                context=context)
-        else:
-            pick_obj.compute_all_delivery_dates(cr, uid, context=context)
+        dispatch_ids = context.get('active_ids')
+        if not dispatch_ids:
+            raise orm.except_orm(
+                _('Error'),
+                _('No selected dispatch'))
 
-        return True
+        dispatch_obj = self.pool['picking.dispatch']
+        dispatch_obj.check_assign_all(cr, uid, dispatch_ids, context=context)
+        return {'type': 'ir.actions.act_window_close'}

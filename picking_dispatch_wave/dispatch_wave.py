@@ -36,8 +36,9 @@ class StockPickingDispatchWave(orm.TransientModel):
         move_ids = move_obj.search(cr, uid,
                                    [('dispatch_id', '=', False),
                                     ('state', '=', 'assigned'),
-                                    ('type', '=', 'out')],
-                                   order='date_expected DESC',
+                                    ('type', '=', 'out'),
+                                    ('location_id.usage', '=', 'internal')],
+                                   order='date_expected ASC',
                                    context=context)
         for move in move_obj.browse(cr, uid, move_ids, context=context):
             if len(picking_ids) == max_nb:
